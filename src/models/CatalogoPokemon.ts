@@ -30,4 +30,17 @@ export class CatalogoPokemon {
       );
     });
   }
+
+  remover(id: number): void {
+    const existe = this.pokemons.some((pokemon) => pokemon.id === id);
+
+    if (!existe) {
+      console.log(`[AVISO] Pokémon com ID ${String(id)} não encontrado.`);
+      return;
+    }
+
+    this.pokemons = this.pokemons.filter((pokemon) => pokemon.id !== id);
+
+    console.log(`[OK] Pokémon com ID ${String(id)} removido do catálogo.`);
+  }
 }
