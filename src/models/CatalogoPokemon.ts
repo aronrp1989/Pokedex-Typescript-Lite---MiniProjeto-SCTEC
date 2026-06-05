@@ -15,4 +15,19 @@ export class CatalogoPokemon {
 
     console.log(`[OK] ${pokemon.nome} adicionado ao catálogo.`);
   }
+
+  listar(): void {
+    if (this.pokemons.length === 0) {
+      console.log('[AVISO] Catálogo vazio.');
+      return;
+    }
+
+    console.log('\nCatálogo atual:');
+
+    this.pokemons.forEach((pokemon) => {
+      console.log(
+        `#${String(pokemon.id)} - ${pokemon.nome} | Tipos: ${pokemon.tipos.join(', ')} | Altura: ${String(pokemon.altura)} | Peso: ${String(pokemon.peso)}`,
+      );
+    });
+  }
 }
