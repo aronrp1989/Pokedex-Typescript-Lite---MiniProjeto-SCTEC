@@ -3,6 +3,10 @@ import { PokemonResumo } from './Pokemon';
 export class CatalogoPokemon {
   private pokemons: PokemonResumo[] = [];
 
+  constructor(pokemons: PokemonResumo[] = []) {
+    this.pokemons = pokemons;
+  }
+
   adicionar(pokemon: PokemonResumo): void {
     const jaExiste = this.pokemons.some((item) => item.id === pokemon.id);
 

@@ -4,8 +4,15 @@ import { PokeApiService } from './services/PokeApiService';
 
 async function main(): Promise<void> {
   const pokeApiService = new PokeApiService();
-  const catalogo = new CatalogoPokemon();
   const pcBoxService = new PcBoxService();
+
+  const pokemonsSalvos = await pcBoxService.carregar();
+
+  console.log(
+    `[INFO] ${String(pokemonsSalvos.length)} Pokémon(s) carregado(s) do PC Box.`,
+  );
+
+  const catalogo = new CatalogoPokemon(pokemonsSalvos);
 
   const pikachu = await pokeApiService.buscarPokemon('pikachu');
 
