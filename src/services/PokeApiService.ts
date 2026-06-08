@@ -1,4 +1,5 @@
-import { PokemonApiResponse, PokemonResumo } from '../models/Pokemon';
+import { PokemonResumo } from '../models/Pokemon';
+import { isPokemonApiResponse } from '../utils/pokemonTypeGuard';
 
 export class PokeApiService {
   async buscarPokemon(nomeOuId: string): Promise<PokemonResumo | null> {
@@ -12,7 +13,12 @@ export class PokeApiService {
         return null;
       }
 
-      const dados = (await resposta.json()) as PokemonApiResponse;
+      const dados: unknown = await resposta.json();
+
+      if (!isPokemonApiResponse(dados)) {
+        console.log('[ERRO] Resposta inválida da API.');
+        return null;
+      }
 
       const pokemon: PokemonResumo = {
         id: dados.id,
