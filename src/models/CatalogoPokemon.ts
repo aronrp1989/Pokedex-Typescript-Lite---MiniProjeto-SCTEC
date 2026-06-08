@@ -43,4 +43,8 @@ export class CatalogoPokemon {
 
     console.log(`[OK] Pokémon com ID ${String(id)} removido do catálogo.`);
   }
+
+  obterTodos(): PokemonResumo[] {
+    return this.pokemons;
+  }
 }

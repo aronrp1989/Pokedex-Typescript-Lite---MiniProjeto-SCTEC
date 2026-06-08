@@ -1,9 +1,11 @@
 import { CatalogoPokemon } from './models/CatalogoPokemon';
+import { PcBoxService } from './services/PcBoxService';
 import { PokeApiService } from './services/PokeApiService';
 
 async function main(): Promise<void> {
   const pokeApiService = new PokeApiService();
   const catalogo = new CatalogoPokemon();
+  const pcBoxService = new PcBoxService();
 
   const pikachu = await pokeApiService.buscarPokemon('pikachu');
 
@@ -28,6 +30,8 @@ async function main(): Promise<void> {
   catalogo.listar();
 
   await pokeApiService.buscarPokemon('pokemon-inexistente');
+
+  await pcBoxService.salvar(catalogo.obterTodos());
 }
 
 main().catch(() => {
